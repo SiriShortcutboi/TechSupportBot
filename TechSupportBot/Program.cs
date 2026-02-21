@@ -82,7 +82,7 @@ public class Program
         issue = "wifi problems";
         }
 
-        if(powerStatus == false || errorStatus == true )
+        if(powerStatus == false && errorStatus == true )
         {
         Console.WriteLine("Check your power cable.");
         urgentStatus = false;
