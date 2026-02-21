@@ -6,9 +6,15 @@ public class Program
     static string deviceError = "default";
     static string deviceWifi = "default";
 
+    static string issue = "default";
+
     static bool powerStatus = false;
     static bool errorStatus = false;
     static bool wifiStatus = false;
+
+    
+
+    static bool urgentStatus = false;
 	public static void Main()
 	{
 		Console.WriteLine("Welcome to Tech Support, I'm going to ask you a few questions.\n" + 
@@ -24,13 +30,13 @@ public class Program
         Console.WriteLine("Is it connected to Wi-Fi?");
         deviceWifi = Console.ReadLine();
 
-        
-        if (devicePower.Trim().ToLower == "yes")
+        //power status bool
+        if (devicePower.Trim().ToLower() == "yes")
         {
             powerStatus = true;
 
         }
-        else if(devicePower.Trim().ToLower == "no")
+        else if (devicePower.Trim().ToLower() == "no")
         {
             powerStatus = false;
         }
@@ -40,12 +46,12 @@ public class Program
         }
 
         // device error boool
-        if (deviceError.Trim().ToLower == "yes")
+        if (deviceError.Trim().ToLower() == "yes")
         {
             errorStatus = true;
 
         }
-        else if(deviceError.Trim().ToLower == "no")
+        else if (deviceError.Trim().ToLower() == "no")
         {
             errorStatus = false;
         }
@@ -55,12 +61,12 @@ public class Program
         }
 
         // wifi bool
-        if (deviceWifi.Trim().ToLower == "yes")
+        if (deviceWifi.Trim().ToLower() == "yes")
         {
             wifiStatus = true;
 
         }
-        else if(deviceWifi.Trim().ToLower == "no")
+        else if (deviceWifi.Trim().ToLower() == "no")
         {
             wifiStatus = false;
         }
@@ -73,39 +79,35 @@ public class Program
         //writelines to the user based on errors
         if(powerStatus == true && errorStatus == true && wifiStatus == false){
         Console.WriteLine("Try restarting your router.");
+        issue = "wifi problems";
         }
 
         if(powerStatus == false || errorStatus == true )
         {
         Console.WriteLine("Check your power cable.");
+        urgentStatus = false;
+        issue = "Sufficient power is not available";
         }
 
         if(powerStatus == false || errorStatus == true || wifiStatus == false)
         {
-        Console.WriteLine("Contact support.");
-
-        ShowSupportMessage();
+        Console.WriteLine("Contact support. You may need a house call technician");
+        urgentStatus = true; 
+        issue = "You may have a few different issues. dont let the kids near this device";
+        ShowSupportMessage(issue, urgentStatus);
         }
 
 
         
-   
+   }
 
-    void ShowSupportMessage(string issue, bool urgent = false, string technician = "General Help")
-    {
-// Using a standard if-else statement
-if (age >= 18) {
-    message = "You are an adult";
-} else {
-    message = "You are a minor";
-}
+        static void ShowSupportMessage(string issue, bool urgentStatus, string technician = "General Help")
+        {
+    
+    string gottagoFast = urgentStatus ? "Urgent: YES - A technician will call you." : "General Help";
 
-// Using the ternary operator to achieve the same result
-string messageTernary = (age >= 18) ? "You are an adult" : "You are a minor";  
-
-Console.WriteLine(messageTernary);
-// Output: You are an adult
-
-    }
+    Console.WriteLine(gottagoFast);
+        }
+    
 
 }
