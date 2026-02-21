@@ -13,6 +13,9 @@ public class Program
     static bool wifiStatus = false;
 
     
+    //Do I get extra points if my roommate asked what language im coding in and then he made a joke about
+    //turning a computer off and back on again, and then I showed him thats exactly the sort of program
+    //I am working on?
 
     static bool urgentStatus = false;
 	public static void Main()
@@ -84,7 +87,7 @@ public class Program
 
         if(powerStatus == false && errorStatus == true )
         {
-        Console.WriteLine("Check your power cable.");
+        Console.WriteLine("Check your power cable, then turn off computer and try to turn it on again");
         urgentStatus = false;
         issue = "Sufficient power is not available";
         }
